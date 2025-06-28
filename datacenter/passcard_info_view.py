@@ -1,4 +1,4 @@
-from datacenter.functions import get_duration, format_duration
+from datacenter.time import get_duration, format_duration, is_visit_long
 from datacenter.models import Passcard
 from datacenter.models import Visit
 from django.shortcuts import render
@@ -16,12 +16,12 @@ def passcard_info_view(request, passcode):
         duration = get_duration(visit)
         enter_localtime = localtime(visit.entered_at)
         visit_time = format_duration(duration)
-
+        is_strange = is_visit_long(duration)
         this_passcard_visits.append(
             {
                 'entered_at': enter_localtime,
                 'duration': visit_time,
-                'is_strange': False
+                'is_strange': is_strange
             },
         )
     context = {

@@ -1,4 +1,5 @@
 from django.db import models
+from .models import Visit
 
 
 class Passcard(models.Model):
@@ -28,3 +29,4 @@ class Visit(models.Model):
                 if self.leaved_at else 'not leaved'
             )
         )
+    
